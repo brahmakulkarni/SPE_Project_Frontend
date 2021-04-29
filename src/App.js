@@ -1,24 +1,34 @@
-import logo from './logo.svg';
+import React,{useState} from 'react';
+import Navbar from './components/Navbar';
+import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom'
 import './App.css';
+import Signup from './components/Signup';
+import Login from './components/Login';
+import Header from './components/Header';
+import {createBrowserHistory} from "history"
+
+// const history = createBrowserHistory();
 
 function App() {
+  const [title, updateTitle] = useState(null);
+  const [errorMessage, updateErrorMessage] = useState(null);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        {/* <Navbar />
+        <Switch>
+          <Route path='/' />
+        </Switch> */}
+          <Navbar />  
+          <Redirect from='/' to='/Signup'/> 
+          <Switch>
+            <div className="App">
+              <Route path='/Signup' component = {() => <Signup showError = {updateErrorMessage} updateTitle={updateTitle} />}/>
+              <Route path='/Login' component = {() => <Login showError = {updateErrorMessage} updateTitle={updateTitle} />}/>
+            </div>
+          </Switch>
+      </Router>
+    </>
   );
 }
 

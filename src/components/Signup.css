@@ -1,0 +1,54 @@
+.successMessage {
+    color: green;
+    font-weight: bold;
+}
+
+.form-items {
+    padding: 0.5em
+}
+
+.confirm-password-entry {
+    padding-bottom: 1em;
+}
+
+/* .names {
+    text-align: left;
+} */
+
+.title {
+    /* margin-top: 10px; */
+    color: white;
+}
+
+.btn-primary {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+/* .registration-form {
+    border: 1px;
+    border-style: solid;
+} */
+
+.regform {
+    margin-top: 10px;
+    padding: 10px 10px;
+    border: 1.75px solid;
+    border-radius: 10px;
+}
+
+.dropdown {
+    width: 100%;
+    /* background-color: white; */
+}
+
+/* .registration-form {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-control {
+    width: 100%;
+} */
