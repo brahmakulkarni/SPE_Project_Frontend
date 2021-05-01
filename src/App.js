@@ -19,7 +19,7 @@ function App() {
         <Switch>
           <Route path='/' />
         </Switch> */}
-          <Navbar />  
+          <Navbar showError = {updateErrorMessage} updateTitle={updateTitle} />  
           <Redirect from='/' to='/Signup'/> 
           <Switch>
             <div className="App">

@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import './Signup.css';
+import "./Signup.css";
 import { withRouter } from "react-router-dom";
-import {API_BASE_URL, ACCESS_TOKEN_NAME} from '../constants/api-constants';
+import {API_URL, ACCESS_TOKEN_NAME} from '../constants/api-constants';
+
+// const axios = require('axios');
 
 function Signup(props) {
     const [state, setState]= useState({
@@ -44,44 +46,73 @@ function Signup(props) {
         props.history.push('/Login');
     }
 
-    // const sendDetailsToServer = () => {
-    //     if(state.name.length && state.age.length && state.gender.length && state.email.length && state.password.length) {
-    //         props.showError(null);
-    //         const payload={
-    //             "email":state.email,
-    //             "password":state.password,
-    //         }
-    //         axios.post(API_URL+'/user/register', payload)
-    //             .then(function (response) {
-    //                 if(response.status === 200){
-    //                     setState(prevState => ({
-    //                         ...prevState,
-    //                         'successMessage' : 'Registration successful. Redirecting to home page..'
-    //                     }))
-    //                     localStorage.setItem(ACCESS_TOKEN_NAME,response.data.token);
-    //                     redirectToHome();
-    //                     props.showError(null)
-    //                 } else{
-    //                     props.showError("Some error ocurred");
-    //                 }
-    //             })
-    //             .catch(function (error) {
-    //                 console.log(error);
-    //             });    
-    //     } else {
-    //         props.showError('Please enter valid username and password')    
-    //     } 
-    // }
+    const sendDetailsToServer = () => {
+        // if(state.name.length && state.age.length && state.gender.length && state.email.length && state.password.length) {
+        //     props.showError(null);
+        //     const payload={
+        //         "name":state.name,
+        //         "age":state.age,
+        //         "gender":state.gender,
+        //         // "email":state.email,
+        //         // "password":state.password,
+        //     }
+        //     axios.get(API_URL+'/getAllUsers')
+        //         .then(function (response) {
+        //             if(response.status === 200){
+        //                 // setState(prevState => ({
+        //                 //     ...prevState,
+        //                 //     'successMessage' : 'Registration successful. Redirecting to home page..'
+        //                 // }))
+        //                 // localStorage.setItem(ACCESS_TOKEN_NAME,response.data.token);
+        //                 // redirectToHome();
+        //                 // props.showError(null)
+        //                 console.log(response)
+        //             } else{
+        //                 // props.showError("Some error ocurred");
+        //                 console.log("LMAO")
+        //             }
+        //         })
+        //         .catch(function (error) {
+        //             console.log(error);
+        //         });    
+        // } else {
+        //     // props.showError('Please enter valid username and password')    
+        //     console.log("LMAO2")
+        // } 
+        console.log("check")
+        // return axios.get('http://192.168.42.90:8000/getAllUsers')
+        //         .then(function (response) {
+        //             console.log("inside then")
+        //             if(response.status === 200){
+        //                 // setState(prevState => ({
+        //                 //     ...prevState,
+        //                 //     'successMessage' : 'Registration successful. Redirecting to home page..'
+        //                 // }))
+        //                 // localStorage.setItem(ACCESS_TOKEN_NAME,response.data.token);
+        //                 // redirectToHome();
+        //                 // props.showError(null)
+        //                 console.log(response)
+        //             } else{
+        //                 // props.showError("Some error ocurred");
+        //                 console.log("LMAO")
+        //             }
+        //         })
+        //         .catch(function (error) {
+        //             console.log(error);
+        //         });
+        return axios.get('http://192.168.42.90:8000/getAllUsers').then(response => response.data)
+    }
 
-    const handleClick = (e) => {
-        e.preventDefault();
-        if (state.password === state.confirmPassword) {
-            // sendDetailsToServer()
-            console.log(state)
-        }
-        else {
-            props.showError('Passwords do not match');
-        }
+    const handleClick = () => {
+        // e.preventDefault();
+        // if (state.password === state.confirmPassword) {
+        //     sendDetailsToServer()
+        //     // console.log(state)
+        // }
+        // else {
+        //     props.showError('Passwords do not match');
+        // }
+        sendDetailsToServer()
     }
 
     return (
@@ -159,7 +190,8 @@ function Signup(props) {
                 <button
                     type = "submit"
                     className = "btn btn-primary"
-                    onClick = {handleClick}
+                    // onClick = {handleClick}
+                    onClick={() => {console.log("Yessssirr")}}
                 >
                     Signup
                 </button>
@@ -168,7 +200,7 @@ function Signup(props) {
                 </div>
                 <div className="toLogin">
                     <span> Have an account already? </span>
-                    <span className="login-text" onClick={() => redirectToLogin()}> Click here to login </span>
+                    <span className="login-text" onClick={() => handleClick()}> Click here to login </span>
                 </div>
             </form>
         </div>

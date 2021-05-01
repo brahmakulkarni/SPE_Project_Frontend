@@ -2,13 +2,32 @@ import React, {useState} from 'react';
 import "./Navbar.css";
 import {Link} from 'react-router-dom';
 import { Button } from './Button';
+import { withRouter } from "react-router-dom";
 
-export default function Navbar() {
+function Navbar(props) {
     const [click, setClick] = useState(false); 
     const [button, setButton] = useState(true);
 
     const handleClick = () => setClick(!click);
-    const closeMobileMenu = () => setClick(false);
+
+    const closeMobileMenuHome = () => {
+        setClick(false);
+        props.updateTitle('Home')
+        props.history.push('/Home');
+    }
+
+    const closeMobileMenuProfile = () => {
+        setClick(false);
+        props.updateTitle('Profile')
+        props.history.push('/Profile');
+    }
+
+    const closeMobileMenuSignup = () => {
+        setClick(false);
+        props.updateTitle('Signup')
+        props.history.push('/Signup');
+    }
+
     const showButton = () => {
         if (window.innerWidth <= 960) {
             setButton(false);
@@ -33,17 +52,17 @@ export default function Navbar() {
                 </div>
                 <ul className= {click ? 'nav-menu active' : 'nav-menu'}>
                     <li className='nav-item'>
-                        <Link to='/Home' className='nav-links' onClick={closeMobileMenu}>
+                        <Link to='/Home' className='nav-links' onClick={closeMobileMenuHome}>
                             Home
                         </Link>
                     </li>
                     <li className='nav-item'>
-                        <Link to='/profile' className='nav-links' onClick={closeMobileMenu}>
+                        <Link to='/Profile' className='nav-links' onClick={closeMobileMenuProfile}>
                             Profile
                         </Link>
                     </li>
                     <li className='nav-item'>
-                        <Link to='/' className='nav-links-mobile' onClick={closeMobileMenu}>
+                        <Link to='/Signup' className='nav-links-mobile' onClick={closeMobileMenuSignup}>
                             Sign Up
                         </Link>
                     </li>
@@ -53,3 +72,5 @@ export default function Navbar() {
         </>
     )
 }
+
+export default withRouter(Navbar)
