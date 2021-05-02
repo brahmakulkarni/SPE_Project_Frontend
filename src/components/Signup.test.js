@@ -1,4 +1,4 @@
-import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom'
+import {BrowserRouter as Router} from 'react-router-dom'
 import { render, screen } from "@testing-library/react";
 import Signup from "./Signup";
 

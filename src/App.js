@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom
 import './App.css';
 import Signup from './components/Signup';
 import Login from './components/Login';
+import Home from './components/Home';
 import Header from './components/Header';
 import {createBrowserHistory} from "history"
 
@@ -25,6 +26,7 @@ function App() {
             <div className="App">
               <Route path='/Signup' component = {() => <Signup showError = {updateErrorMessage} updateTitle={updateTitle} />}/>
               <Route path='/Login' component = {() => <Login showError = {updateErrorMessage} updateTitle={updateTitle} />}/>
+              <Route path='/Home' component = {() => <Home showError = {updateErrorMessage} updateTitle={updateTitle} />}/>
             </div>
           </Switch>
       </Router>

@@ -37,8 +37,8 @@ function Signup(props) {
     }
 
     const redirectToHome = () => {
-        this.props.updateTitle('Home')
-        this.props.history.push('/home');
+        props.updateTitle('Home')
+        props.history.push('/Home');
     }
 
     const redirectToLogin = () => {
@@ -47,61 +47,65 @@ function Signup(props) {
     }
 
     const sendDetailsToServer = () => {
-        // if(state.name.length && state.age.length && state.gender.length && state.email.length && state.password.length) {
-        //     props.showError(null);
-        //     const payload={
-        //         "name":state.name,
-        //         "age":state.age,
-        //         "gender":state.gender,
-        //         // "email":state.email,
-        //         // "password":state.password,
-        //     }
-        //     axios.get(API_URL+'/getAllUsers')
-        //         .then(function (response) {
-        //             if(response.status === 200){
-        //                 // setState(prevState => ({
-        //                 //     ...prevState,
-        //                 //     'successMessage' : 'Registration successful. Redirecting to home page..'
-        //                 // }))
-        //                 // localStorage.setItem(ACCESS_TOKEN_NAME,response.data.token);
-        //                 // redirectToHome();
-        //                 // props.showError(null)
-        //                 console.log(response)
-        //             } else{
-        //                 // props.showError("Some error ocurred");
-        //                 console.log("LMAO")
-        //             }
-        //         })
-        //         .catch(function (error) {
-        //             console.log(error);
-        //         });    
-        // } else {
-        //     // props.showError('Please enter valid username and password')    
-        //     console.log("LMAO2")
-        // } 
-        console.log("check")
-        // return axios.get('http://192.168.42.90:8000/getAllUsers')
+        if(state.name.length && state.age.length && state.gender.length && state.email.length && state.password.length) {
+            props.showError(null);
+            const payload={
+                "name":state.name,
+                "age":state.age,
+                "gender":state.gender,
+                "email":state.email,
+                "password":state.password,
+                "confirmPassword":state.confirmPassword,
+            }
+            axios.post('http://aa55877066ca.ngrok.io/user',payload)
+                .then(function (response) {
+                    if(response.status === 200){
+                        setState(prevState => ({
+                            ...prevState,
+                            'successMessage' : 'Registration successful. Redirecting to home page..'
+                        }))
+                        localStorage.setItem(ACCESS_TOKEN_NAME,response.data.token);
+                        console.log(response.data.token)
+                        redirectToHome();
+                        props.showError(null)
+                        // console.log(response)
+                    } else{
+                        props.showError("Some error ocurred");
+                        console.log("Some error ocurred")
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });    
+        } else {
+            props.showError('Please enter valid username and password')    
+            console.log("Please enter valid username and password")
+        } 
+        // console.log(localStorage.getItem(ACCESS_TOKEN_NAME))
+        // axios.get('http://192.168.42.90:8000/getAllUsers')
         //         .then(function (response) {
         //             console.log("inside then")
         //             if(response.status === 200){
-        //                 // setState(prevState => ({
-        //                 //     ...prevState,
-        //                 //     'successMessage' : 'Registration successful. Redirecting to home page..'
-        //                 // }))
-        //                 // localStorage.setItem(ACCESS_TOKEN_NAME,response.data.token);
-        //                 // redirectToHome();
-        //                 // props.showError(null)
-        //                 console.log(response)
+        //                 setState(prevState => ({
+        //                     ...prevState,
+        //                     'successMessage' : 'Registration successful. Redirecting to home page..'
+        //                 }))
+        //                 localStorage.setItem(ACCESS_TOKEN_NAME,response.data.token);
+        //                 redirectToHome();
+        //                 props.showError(null)
+        //                 // console.log(response)
         //             } else{
-        //                 // props.showError("Some error ocurred");
-        //                 console.log("LMAO")
+        //                 props.showError("Some error ocurred");
+        //                 console.log("Some error ocurred")
         //             }
         //         })
         //         .catch(function (error) {
         //             console.log(error);
         //         });
-        return axios.get('http://192.168.42.90:8000/getAllUsers').then(response => response.data)
+        // axios.get('http://f3be6ad93b02.ngrok.io/getAllUsers').then(response => console.log(response.data))
     }
+
+    // {headers: {'Access-Control-Allow-Origin': 'http://f3be6ad93b02.ngrok.io','Access-Control-Allow-Methods':'PUT, DELETE, GET'}}
 
     const handleClick = () => {
         // e.preventDefault();
