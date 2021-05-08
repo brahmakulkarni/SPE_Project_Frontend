@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import "./Signup.css";
 import { withRouter } from "react-router-dom";
+import Select from "react-select";
 import {API_URL, ACCESS_TOKEN_NAME} from '../constants/api-constants';
 
 // const axios = require('axios');
@@ -14,6 +15,7 @@ function Signup(props) {
         email: "",
         password: "",
         confirmPassword: "",
+        interests: [],
         successMessage: null
     })
 
@@ -30,10 +32,14 @@ function Signup(props) {
         setState(prevState => ({
             ...prevState,[id] : value
         }));
-        // console.log(state.gender)
-        // console.log(state.name)
-        // console.log(state.age)
-        // console.log(state)
+    }
+
+    const handleMultiSelectChange = (e) => {
+        const id = "interests"
+        setState(prevState => ({
+            ...prevState,[id] : e
+        }))
+        console.log(state.interests)
     }
 
     const redirectToHome = () => {
@@ -81,28 +87,7 @@ function Signup(props) {
             props.showError('Please enter valid username and password')    
             console.log("Please enter valid username and password")
         } 
-        // console.log(localStorage.getItem(ACCESS_TOKEN_NAME))
-        // axios.get('http://192.168.42.90:8000/getAllUsers')
-        //         .then(function (response) {
-        //             console.log("inside then")
-        //             if(response.status === 200){
-        //                 setState(prevState => ({
-        //                     ...prevState,
-        //                     'successMessage' : 'Registration successful. Redirecting to home page..'
-        //                 }))
-        //                 localStorage.setItem(ACCESS_TOKEN_NAME,response.data.token);
-        //                 redirectToHome();
-        //                 props.showError(null)
-        //                 // console.log(response)
-        //             } else{
-        //                 props.showError("Some error ocurred");
-        //                 console.log("Some error ocurred")
-        //             }
-        //         })
-        //         .catch(function (error) {
-        //             console.log(error);
-        //         });
-        // axios.get('http://f3be6ad93b02.ngrok.io/getAllUsers').then(response => console.log(response.data))
+        
     }
 
     // {headers: {'Access-Control-Allow-Origin': 'http://f3be6ad93b02.ngrok.io','Access-Control-Allow-Methods':'PUT, DELETE, GET'}}
@@ -116,8 +101,19 @@ function Signup(props) {
         // else {
         //     props.showError('Passwords do not match');
         // }
+        console.log(state.interests)
         sendDetailsToServer()
     }
+
+    const options = [
+        { label: "Singing", value: "singing" },
+        { label: "Dancing", value: "dancing" },
+        { label: "Anime", value: "anime" },
+        { label: "Action movies", value: "action" },
+        { label: "Travelling", value: "travelling" },
+        { label: "Technology", value: "technology" },
+        { label: "Politics", value: "politics" }
+    ];
 
     return (
         <>
@@ -191,11 +187,21 @@ function Signup(props) {
                            onChange={handleChange}
                     />
                 </div>
+                <div className = "form-items interests-entry">
+                    <label className="names">Select your interests</label>
+                    <Select
+                        isMulti
+                        options={options}
+                        name={state.interests}
+                        value={state.interests}
+                        onChange={handleMultiSelectChange}
+                    />
+                </div>
                 <button
                     type = "submit"
                     className = "btn btn-primary"
                     // onClick = {handleClick}
-                    onClick={() => {console.log("Yessssirr")}}
+                    // onClick={() => {console.log("Yessssirr")}}
                 >
                     Signup
                 </button>

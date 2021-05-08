@@ -43,8 +43,8 @@ function Navbar(props) {
         <>
             <nav className="navbar bg-primary">
                 <div className="navbar-container">
-                    <Link to="/" className="navbar-logo">
-                        Frinder<img className="photo" src="/oreo.png" alt=""/>
+                    <Link to="/Home" className="navbar-logo">
+                        Hello Friend<img className="photo" src="/oreo.png" alt=""/>
                     </Link>
                     <div className="menu-icon" onClick={handleClick}>
                         <i className= {click ? 'fas fa-times' : 'fas fa-bars'} />
