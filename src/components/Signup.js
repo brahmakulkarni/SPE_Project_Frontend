@@ -3,9 +3,10 @@ import axios from 'axios';
 import "./Signup.css";
 import { withRouter } from "react-router-dom";
 import Select from "react-select";
-import {API_URL, ACCESS_TOKEN_NAME} from '../constants/api-constants';
+import {API_URL, ACCESS_TOKEN_NAME, userData, changeUserData} from '../constants/api-constants';
 
 // const axios = require('axios');
+
 
 function Signup(props) {
     const [state, setState]= useState({
@@ -61,17 +62,19 @@ function Signup(props) {
                 "gender":state.gender,
                 "email":state.email,
                 "password":state.password,
-                "confirmPassword":state.confirmPassword,
+                "interests":state.interests,
             }
-            axios.post('http://localhost:8000/user',payload)
+            axios.post('http://127.0.0.1:8000/user',payload)
                 .then(function (response) {
                     if(response.status === 200){
                         setState(prevState => ({
                             ...prevState,
                             'successMessage' : 'Registration successful. Redirecting to home page..'
                         }))
-                        localStorage.setItem(ACCESS_TOKEN_NAME,response.data.token);
+                        localStorage.setItem(ACCESS_TOKEN_NAME,response.data);
+                        changeUserData(response.data)
                         console.log("Hello")
+                        console.log(response.data)
                         redirectToHome();
                         props.showError(null)
                         // console.log(response)
@@ -92,16 +95,16 @@ function Signup(props) {
 
     // {headers: {'Access-Control-Allow-Origin': 'http://f3be6ad93b02.ngrok.io','Access-Control-Allow-Methods':'PUT, DELETE, GET'}}
 
-    const handleClick = () => {
-        // e.preventDefault();
-        // if (state.password === state.confirmPassword) {
-        //     sendDetailsToServer()
-        //     // console.log(state)
-        // }
-        // else {
-        //     props.showError('Passwords do not match');
-        // }
-        sendDetailsToServer()
+    const handleClick = (e) => {
+        e.preventDefault();
+        if (state.password === state.confirmPassword) {
+            sendDetailsToServer()
+            // console.log(state)
+        }
+        else {
+            props.showError('Passwords do not match');
+        }
+        // sendDetailsToServer()
     }
 
     const options = [

@@ -3,6 +3,7 @@ import "./Navbar.css";
 import {Link} from 'react-router-dom';
 import { Button } from './Button';
 import { withRouter } from "react-router-dom";
+import {API_URL, ACCESS_TOKEN_NAME} from '../constants/api-constants';
 
 function Navbar(props) {
     const [click, setClick] = useState(false); 
@@ -37,13 +38,19 @@ function Navbar(props) {
         }
     }
 
+    const handleLogout = () => {
+        localStorage.clear();
+        props.updateTitle('Login')
+        props.history.push('/Login');
+    }
+
     window.addEventListener('resize', showButton)
 
     return (
         <>
             <nav className="navbar bg-primary">
                 {
-                    localStorage.getItem('user-info') ?
+                    localStorage.getItem(ACCESS_TOKEN_NAME) ?
                         <>
                         <div className="navbar-container">
                             <Link to="/Home" className="navbar-logo">
@@ -64,13 +71,8 @@ function Navbar(props) {
                                     Profile
                                 </Link>
                             </li>
-                            <li className='nav-item'>
-                                <Link to='/Signup' className='nav-links-mobile' onClick={closeMobileMenuSignup}>
-                                    Sign Up
-                                </Link>
-                            </li>
                         </ul>
-                        {button && <Button buttonStyle='btn--outline'>SIGN UP</Button>}
+                        {button && <button onClick={handleLogout}>Logout</button>}
                         </>
                         :
                         <>
