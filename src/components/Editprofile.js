@@ -1,13 +1,11 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import "./Signup.css";
+import "./Editprofile.css";
 import { withRouter } from "react-router-dom";
 import Select from "react-select";
 import {API_URL, ACCESS_TOKEN_NAME} from '../constants/api-constants';
 
-// const axios = require('axios');
-
-function Signup(props) {
+function Editprofile(props) {
     const [state, setState]= useState({
         name: "",
         age: "",
@@ -17,7 +15,17 @@ function Signup(props) {
         confirmPassword: "",
         interests: [],
         successMessage: null
-    })
+    });
+
+    const options = [
+        { label: "Singing", value: "singing" },
+        { label: "Dancing", value: "dancing" },
+        { label: "Anime", value: "anime" },
+        { label: "Action movies", value: "action" },
+        { label: "Travelling", value: "travelling" },
+        { label: "Technology", value: "technology" },
+        { label: "Politics", value: "politics" }
+    ];
 
     const handleChange = (e) => {
         const {id,value} = e.target
@@ -41,78 +49,6 @@ function Signup(props) {
         }))
         console.log(state.interests)
     }
-
-    const redirectToHome = () => {
-        props.updateTitle('Home')
-        props.history.push('/Home');
-    }
-
-    const redirectToLogin = () => {
-        props.updateTitle('Login')
-        props.history.push('/Login');
-    }
-
-    const sendDetailsToServer = () => {
-        if(state.name.length && state.age.length && state.gender.length && state.email.length && state.password.length) {
-            props.showError(null);
-            const payload={
-                "name":state.name,
-                "age":state.age,
-                "gender":state.gender,
-                "email":state.email,
-                "password":state.password,
-                "confirmPassword":state.confirmPassword,
-            }
-            axios.post('http://localhost:8000/user',payload)
-                .then(function (response) {
-                    if(response.status === 200){
-                        setState(prevState => ({
-                            ...prevState,
-                            'successMessage' : 'Registration successful. Redirecting to home page..'
-                        }))
-                        localStorage.setItem(ACCESS_TOKEN_NAME,response.data.token);
-                        console.log(response.data.token)
-                        redirectToHome();
-                        props.showError(null)
-                        // console.log(response)
-                    } else{
-                        props.showError("Some error ocurred");
-                        console.log("Some error ocurred")
-                    }
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });    
-        } else {
-            props.showError('Please enter valid username and password')    
-            console.log("Please enter valid username and password")
-        } 
-        
-    }
-
-    // {headers: {'Access-Control-Allow-Origin': 'http://f3be6ad93b02.ngrok.io','Access-Control-Allow-Methods':'PUT, DELETE, GET'}}
-
-    const handleClick = () => {
-        // e.preventDefault();
-        // if (state.password === state.confirmPassword) {
-        //     sendDetailsToServer()
-        //     // console.log(state)
-        // }
-        // else {
-        //     props.showError('Passwords do not match');
-        // }
-        sendDetailsToServer()
-    }
-
-    const options = [
-        { label: "Singing", value: "singing" },
-        { label: "Dancing", value: "dancing" },
-        { label: "Anime", value: "anime" },
-        { label: "Action movies", value: "action" },
-        { label: "Travelling", value: "travelling" },
-        { label: "Technology", value: "technology" },
-        { label: "Politics", value: "politics" }
-    ];
 
     return (
         <>
@@ -202,14 +138,10 @@ function Signup(props) {
                     // onClick = {handleClick}
                     // onClick={() => {console.log("Yessssirr")}}
                 >
-                    Signup
+                    Make Changes
                 </button>
                 <div className="display-message" style={{display : state.successMessage ? 'block' : 'none'}} role="alert">
                     {state.successMessage}
-                </div>
-                <div className="toLogin">
-                    <span> Have an account already? </span>
-                    <span className="login-text" onClick={() => handleClick()}> Click here to login </span>
                 </div>
             </form>
         </div>
@@ -217,4 +149,4 @@ function Signup(props) {
     )
 }
 
-export default withRouter(Signup);
+export default withRouter(Editprofile);

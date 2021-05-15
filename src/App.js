@@ -7,6 +7,8 @@ import Login from './components/Login';
 import Home from './components/Home';
 import Header from './components/Header';
 import {createBrowserHistory} from "history"
+import Profile from './components/Profile';
+import Editprofile from './components/Editprofile';
 
 // const history = createBrowserHistory();
 
@@ -27,6 +29,8 @@ function App() {
               <Route path='/Signup' component = {() => <Signup showError = {updateErrorMessage} updateTitle={updateTitle} />}/>
               <Route path='/Login' component = {() => <Login showError = {updateErrorMessage} updateTitle={updateTitle} />}/>
               <Route path='/Home' component = {() => <Home showError = {updateErrorMessage} updateTitle={updateTitle} />}/>
+              <Route path='/Profile' component = {() => <Profile showError = {updateErrorMessage} updateTitle={updateTitle} />}/>
+              <Route path='/Editprofile' component = {() => <Editprofile showError = {updateErrorMessage} updateTitle={updateTitle} />}/>
             </div>
           </Switch>
       </Router>

@@ -1,0 +1,43 @@
+.profile-enclosure {
+    border: 1.75px solid;
+    border-radius: 10px;
+    margin-top: 20px;
+    /* width: 50%; */
+    padding: 10px;
+    margin-right: auto;
+    margin-left: auto;
+    float: left;
+    /* transform: translate(150%, 0%); */
+}
+
+.button {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+}
+
+.formitems {
+    /* width: 25%; */
+    /* transform: translate(150%, 50%); */
+    padding: 0.5em;
+    border: 1.75px solid;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.interestsentry {
+    margin-bottom: 0px;
+}
+
+.title {
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.subtitles {
+    margin-bottom: 10px;
+    border-radius: 10px;
+    color: white;
+    width: 100%;
+}
