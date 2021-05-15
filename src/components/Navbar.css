@@ -3,6 +3,10 @@
     width: 25px;
 }
 
+.domain-name {
+  color: white;
+}
+
 .navbar {
   background: blue;
   height: 100px;

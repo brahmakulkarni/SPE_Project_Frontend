@@ -9,6 +9,7 @@ import Header from './components/Header';
 import {createBrowserHistory} from "history"
 import Profile from './components/Profile';
 import Editprofile from './components/Editprofile';
+import Customroute from './utils/Customroute';
 
 // const history = createBrowserHistory();
 
@@ -22,15 +23,15 @@ function App() {
         <Switch>
           <Route path='/' />
         </Switch> */}
-          <Navbar showError = {updateErrorMessage} updateTitle={updateTitle} />  
-          <Redirect from='/' to='/Signup'/> 
+          <Navbar showError = {updateErrorMessage} updateTitle={updateTitle} />
+          {/* <Redirect from='/' to='/Login'/> */}
           <Switch>
             <div className="App">
               <Route path='/Signup' component = {() => <Signup showError = {updateErrorMessage} updateTitle={updateTitle} />}/>
               <Route path='/Login' component = {() => <Login showError = {updateErrorMessage} updateTitle={updateTitle} />}/>
-              <Route path='/Home' component = {() => <Home showError = {updateErrorMessage} updateTitle={updateTitle} />}/>
-              <Route path='/Profile' component = {() => <Profile showError = {updateErrorMessage} updateTitle={updateTitle} />}/>
-              <Route path='/Editprofile' component = {() => <Editprofile showError = {updateErrorMessage} updateTitle={updateTitle} />}/>
+              <Customroute path='/Home' component = {() => <Home showError = {updateErrorMessage} updateTitle={updateTitle} />}/>
+              <Customroute path='/Profile' component = {() => <Profile showError = {updateErrorMessage} updateTitle={updateTitle} />}/>
+              <Customroute path='/Editprofile' component = {() => <Editprofile showError = {updateErrorMessage} updateTitle={updateTitle} />}/>
             </div>
           </Switch>
       </Router>

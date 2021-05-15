@@ -71,7 +71,7 @@ function Signup(props) {
                             'successMessage' : 'Registration successful. Redirecting to home page..'
                         }))
                         localStorage.setItem(ACCESS_TOKEN_NAME,response.data.token);
-                        console.log(response.data.token)
+                        console.log("Hello")
                         redirectToHome();
                         props.showError(null)
                         // console.log(response)
@@ -199,7 +199,7 @@ function Signup(props) {
                 <button
                     type = "submit"
                     className = "btn btn-primary"
-                    // onClick = {handleClick}
+                    onClick = {handleClick}
                     // onClick={() => {console.log("Yessssirr")}}
                 >
                     Signup
@@ -209,7 +209,7 @@ function Signup(props) {
                 </div>
                 <div className="toLogin">
                     <span> Have an account already? </span>
-                    <span className="login-text" onClick={() => handleClick()}> Click here to login </span>
+                    <span className="login-text" onClick={() => redirectToLogin()}> Click here to login </span>
                 </div>
             </form>
         </div>

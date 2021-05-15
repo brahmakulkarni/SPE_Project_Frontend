@@ -42,34 +42,43 @@ function Navbar(props) {
     return (
         <>
             <nav className="navbar bg-primary">
-                <div className="navbar-container">
-                    <Link to="/Home" className="navbar-logo">
-                        Hello Friend<img className="photo" src="/oreo.png" alt=""/>
-                    </Link>
-                    <div className="menu-icon" onClick={handleClick}>
-                        <i className= {click ? 'fas fa-times' : 'fas fa-bars'} />
-                    </div>
-                </div>
-                <ul className= {click ? 'nav-menu active' : 'nav-menu'}>
-                    <li className='nav-item'>
-                        <Link to='/Home' className='nav-links' onClick={closeMobileMenuHome}>
-                            Home
-                        </Link>
-                    </li>
-                    <li className='nav-item'>
-                        <Link to='/Profile' className='nav-links' onClick={closeMobileMenuProfile}>
-                            Profile
-                        </Link>
-                    </li>
-                    <li className='nav-item'>
-                        <Link to='/Signup' className='nav-links-mobile' onClick={closeMobileMenuSignup}>
-                            Sign Up
-                        </Link>
-                    </li>
-                </ul>
-                {button && <Button buttonStyle='btn--outline'>SIGN UP</Button>}
-            </nav>
-        </>
+                {
+                    localStorage.getItem('user-info') ?
+                        <>
+                        <div className="navbar-container">
+                            <Link to="/Home" className="navbar-logo">
+                                Hello Friend<img className="photo" src="/oreo.png" alt=""/>
+                            </Link>
+                            <div className="menu-icon" onClick={handleClick}>
+                                <i className= {click ? 'fas fa-times' : 'fas fa-bars'} />
+                            </div>
+                        </div>
+                        <ul className= {click ? 'nav-menu active' : 'nav-menu'}>
+                            <li className='nav-item'>
+                                <Link to='/Home' className='nav-links' onClick={closeMobileMenuHome}>
+                                    Home
+                                </Link>
+                            </li>
+                            <li className='nav-item'>
+                                <Link to='/Profile' className='nav-links' onClick={closeMobileMenuProfile}>
+                                    Profile
+                                </Link>
+                            </li>
+                            <li className='nav-item'>
+                                <Link to='/Signup' className='nav-links-mobile' onClick={closeMobileMenuSignup}>
+                                    Sign Up
+                                </Link>
+                            </li>
+                        </ul>
+                        {button && <Button buttonStyle='btn--outline'>SIGN UP</Button>}
+                        </>
+                        :
+                        <>
+                        <div className="domain-name">Hello Friend<img className="photo" src="/oreo.png" alt=""/></div> 
+                        </>
+                    }
+                </nav>
+            </>
     )
 }
 
