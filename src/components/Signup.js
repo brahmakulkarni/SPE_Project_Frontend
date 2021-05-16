@@ -3,7 +3,7 @@ import axios from 'axios';
 import "./Signup.css";
 import { withRouter } from "react-router-dom";
 import Select from "react-select";
-import {API_URL, ACCESS_TOKEN_NAME, userData, changeUserData} from '../constants/api-constants';
+import {API_URL, ACCESS_TOKEN_NAME, userData, changeUserData, options} from '../constants/api-constants';
 
 // const axios = require('axios');
 
@@ -106,16 +106,6 @@ function Signup(props) {
         }
         // sendDetailsToServer()
     }
-
-    const options = [
-        { label: "Singing", value: "singing" },
-        { label: "Dancing", value: "dancing" },
-        { label: "Anime", value: "anime" },
-        { label: "Action movies", value: "action" },
-        { label: "Travelling", value: "travelling" },
-        { label: "Technology", value: "technology" },
-        { label: "Politics", value: "politics" }
-    ];
 
     return (
         <>

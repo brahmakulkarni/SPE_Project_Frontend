@@ -24,7 +24,7 @@ function App() {
           <Route path='/' />
         </Switch> */}
           <Navbar showError = {updateErrorMessage} updateTitle={updateTitle} />
-          {/* <Redirect from='/' to='/Login'/> */}
+          <Redirect from='/' to='/Login'/>
           <Switch>
             <div className="App">
               <Route path='/Signup' component = {() => <Signup showError = {updateErrorMessage} updateTitle={updateTitle} />}/>

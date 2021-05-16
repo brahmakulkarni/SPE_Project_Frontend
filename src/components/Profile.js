@@ -15,13 +15,19 @@ import {API_URL, ACCESS_TOKEN_NAME, userData, changeUserData} from '../constants
 // };
 // const userData = localStorage.getItem(ACCESS_TOKEN_NAME)
 // console.log(userData)
-const viewInterests = userData.interests.map((interest) => {
-    return <div>{interest}</div>
-});
+
 
 function Profile(props) {
     // const userData = localStorage.getItem(ACCESS_TOKEN_NAME);
-    
+    const viewInterests = userData.interests.map((interest) => {
+        return <div>{interest}</div>
+    });
+
+    const redirectToEdit = () => {
+        props.updateTitle('Editprofile')
+        props.history.push('/Editprofile');
+    }
+
     return (
         <>
         <div className="profile-form hv-center">
@@ -64,7 +70,11 @@ function Profile(props) {
                 </div>
             </form>
         </div>
-        
+        <div className="editbuttondiv">
+            <button className="editbutton bg-primary" onClick={redirectToEdit}>
+                Edit Profile
+            </button>
+        </div>
         </>
     )
 }

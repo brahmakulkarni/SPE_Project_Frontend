@@ -3,7 +3,7 @@ import axios from 'axios';
 import "./Editprofile.css";
 import { withRouter } from "react-router-dom";
 import Select from "react-select";
-import {API_URL, ACCESS_TOKEN_NAME} from '../constants/api-constants';
+import {API_URL, ACCESS_TOKEN_NAME, userData, changeUserData,options} from '../constants/api-constants';
 
 function Editprofile(props) {
     const [state, setState]= useState({
@@ -16,16 +16,6 @@ function Editprofile(props) {
         interests: [],
         successMessage: null
     });
-
-    const options = [
-        { label: "Singing", value: "singing" },
-        { label: "Dancing", value: "dancing" },
-        { label: "Anime", value: "anime" },
-        { label: "Action movies", value: "action" },
-        { label: "Travelling", value: "travelling" },
-        { label: "Technology", value: "technology" },
-        { label: "Politics", value: "politics" }
-    ];
 
     const handleChange = (e) => {
         const {id,value} = e.target
@@ -48,6 +38,62 @@ function Editprofile(props) {
             ...prevState,[id] : e
         }))
         console.log(state.interests)
+    }
+
+    const redirectToProfile = () => {
+        props.updateTitle('Profile')
+        props.history.push('/Profile');
+    }
+
+    const sendDetails = () => {
+        if(state.name.length && state.age.length && state.gender.length && state.email.length && state.password.length) {
+            props.showError(null);
+            const payload={
+                "name":state.name,
+                "age":state.age,
+                "gender":state.gender,
+                "email":state.email,
+                "password":state.password,
+                "interests":state.interests,
+            }
+            axios.put(API_URL+"/user",payload)
+                .then(function (response) {
+                    if(response.status === 200){
+                        setState(prevState => ({
+                            ...prevState,
+                            'successMessage' : 'Registration successful. Redirecting to home page..'
+                        }))
+                        localStorage.setItem(ACCESS_TOKEN_NAME,response.data);
+                        changeUserData(response.data)
+                        console.log("Hello")
+                        console.log(response.data)
+                        redirectToProfile();
+                        props.showError(null)
+                        // console.log(response)
+                    } else{
+                        props.showError("Some error ocurred");
+                        console.log("Some error ocurred")
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });    
+        } else {
+            props.showError('Please enter valid username and password')    
+            console.log("Please enter valid username and password")
+        }
+    }
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        if (state.password === state.confirmPassword) {
+            sendDetails()
+            // console.log(state)
+        }
+        else {
+            props.showError('Passwords do not match');
+        }
+        // sendDetailsToServer()
     }
 
     return (
@@ -135,10 +181,10 @@ function Editprofile(props) {
                 <button
                     type = "submit"
                     className = "btn btn-primary"
-                    // onClick = {handleClick}
+                    onClick = {handleClick}
                     // onClick={() => {console.log("Yessssirr")}}
                 >
-                    Make Changes
+                    Edit
                 </button>
                 <div className="display-message" style={{display : state.successMessage ? 'block' : 'none'}} role="alert">
                     {state.successMessage}

@@ -1,8 +1,8 @@
 .profile-enclosure {
     border: 1.75px solid;
     border-radius: 10px;
-    margin-top: 20px;
-    /* width: 50%; */
+    margin-top: 10px;
+    /* width: 5%; */
     padding: 10px;
     margin-right: auto;
     margin-left: auto;
@@ -40,10 +40,4 @@
     border-radius: 10px;
     color: white;
     width: 100%;
-}
-
-.editbutton {
-    color: white;
-    border-radius: 10px;
-    padding-top: 10px;
 }
