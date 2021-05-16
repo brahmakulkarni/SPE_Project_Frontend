@@ -60,7 +60,7 @@ function Editprofile(props) {
             </nav> */}
             <form className="regform">
                 <div className="title bg-primary">
-                    Sign Up
+                    Edit Details
                 </div>
                 <div className = "form-items name-entry">
                     <label className="names bg-primary">Name</label>

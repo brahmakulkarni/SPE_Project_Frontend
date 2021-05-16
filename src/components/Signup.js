@@ -64,7 +64,7 @@ function Signup(props) {
                 "password":state.password,
                 "interests":state.interests,
             }
-            axios.post('http://127.0.0.1:8000/user',payload)
+            axios.post(API_URL+"/user",payload)
                 .then(function (response) {
                     if(response.status === 200){
                         setState(prevState => ({

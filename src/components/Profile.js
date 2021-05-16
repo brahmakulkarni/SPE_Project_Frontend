@@ -14,10 +14,10 @@ import {API_URL, ACCESS_TOKEN_NAME, userData, changeUserData} from '../constants
 //     interests: ["Anime", "Singing"]
 // };
 // const userData = localStorage.getItem(ACCESS_TOKEN_NAME)
-console.log(userData)
-// const viewInterests = userData.interests.map((interest) => {
-//     return <div>{interest}</div>
-// });
+// console.log(userData)
+const viewInterests = userData.interests.map((interest) => {
+    return <div>{interest}</div>
+});
 
 function Profile(props) {
     // const userData = localStorage.getItem(ACCESS_TOKEN_NAME);
@@ -58,13 +58,13 @@ function Profile(props) {
                     <label className="subtitles bg-primary">Email Address</label>
                     <div className="email-entry details">{userData.email}</div>
                 </div>
-                {/* <div className="formitems interestsentry">
+                <div className="formitems interestsentry">
                     <label className="subtitles bg-primary">Interests</label>
                     <div className="interests-entry details">{viewInterests}</div>
-                </div> */}
+                </div>
             </form>
         </div>
-        <div className="button">Button</div>
+        
         </>
     )
 }

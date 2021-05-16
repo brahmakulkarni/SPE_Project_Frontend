@@ -3,7 +3,8 @@ import "./Navbar.css";
 import {Link} from 'react-router-dom';
 import { Button } from './Button';
 import { withRouter } from "react-router-dom";
-import {API_URL, ACCESS_TOKEN_NAME} from '../constants/api-constants';
+import {API_URL, ACCESS_TOKEN_NAME, userData, changeUserData} from '../constants/api-constants';
+
 
 function Navbar(props) {
     const [click, setClick] = useState(false); 
@@ -40,6 +41,7 @@ function Navbar(props) {
 
     const handleLogout = () => {
         localStorage.clear();
+        changeUserData(null);
         props.updateTitle('Login')
         props.history.push('/Login');
     }
